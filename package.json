@@ -1,0 +1,35 @@
+{
+  "name": "charts-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@antv/g2": "^5.2.1",
+    "@tanstack/react-query": "^5.51.1",
+    "@trpc/client": "^11.0.0-rc.461",
+    "@trpc/next": "^11.0.0-rc.461",
+    "@trpc/react-query": "^11.0.0-rc.461",
+    "@trpc/server": "^11.0.0-rc.461",
+    "antd": "^5.19.2",
+    "mongoose": "^8.5.1",
+    "next": "14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18",
+    "superjson": "^2.2.1",
+    "trpc": "^0.10.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "typescript": "^5"
+  }
+}
