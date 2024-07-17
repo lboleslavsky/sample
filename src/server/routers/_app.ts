@@ -1,10 +1,13 @@
 import { createCallerFactory, publicProcedure, router } from '../trpc'
+import { getSexData, getVaccinated } from "../../utils/db";
 
 export const appRouter = router({
-  healthcheck: publicProcedure.query(() => 'yay!'),
+  getDataVaccinated: publicProcedure.query(async () => {
+    return await getVaccinated();
+  }),
 
-  getData: publicProcedure.query(() => {
-        return {"id":"1", "text":"t"}
+  getDataSex: publicProcedure.query(async () => {
+    return await getSexData();
   })
 });
 

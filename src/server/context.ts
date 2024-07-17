@@ -1,4 +1,5 @@
 /* oeslint-disable @typescript-eslint/no-unused-vars */
+import dbConnect from '@/utils/db';
 import type * as trpcNext from '@trpc/server/adapters/next';
 // oeslint-disable-next-line @typescript-eslint/no-empty-interface
 interface CreateContextOptions {
@@ -10,6 +11,7 @@ interface CreateContextOptions {
  * This is useful for testing when we don't want to mock Next.js' request/response
  */
 export async function createContextInner(_opts: CreateContextOptions) {
+  await dbConnect()
   return {};
 }
 
