@@ -13,27 +13,10 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           Some web
         </Header>
         <Content style={{ background:"#F7F7F7", padding: "3em" }}>
-          <Row>
-            <Col style={alignLeft} flex={"auto"}>
-              <div style={headerStyle}>Graph list</div>
-            </Col>
-            <Col style={alignRight} flex={"auto"}>
-              <Row style={{ padding: "1em" }}>
-                <Col >
-                  <Button>Export to PDF</Button>
-                </Col>
-                <Col>
-                  <Button>Notes (3)</Button>
-                </Col>
-                <Col>
-                  <Button>Filter</Button>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+          
           <Row>
             <Col style={{ width: "100%" }}>
-              <div style={contentStyle}> <main style={{background:"#F7F7F7"}} className="h-screen">{children}</main></div>
+              <div style={contentStyle}> {children}</div>
             </Col>
           </Row>
           <Row>
@@ -47,27 +30,18 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   );
 };
 
-const headerStyle: React.CSSProperties = {
-  textAlign: 'left',
-  color: 'black',
-  height: 64,
-  paddingInline: 48,
-  lineHeight: '64px',
-  display: "block"
-};
-
 const contentStyle: React.CSSProperties = {
   textAlign: 'center',
   minHeight: 120,
   lineHeight: '120px',
   color: '#fff',
-  backgroundColor: 'lightgray',
+  backgroundColor: '#F7F7F7',
 };
 
 const footerStyle: React.CSSProperties = {
   textAlign: 'center',
   color: '#fff',
-  backgroundColor: '#4096ff',
+  backgroundColor: '#F7F7F7',
 };
 
 const layoutStyle = {
@@ -76,6 +50,3 @@ const layoutStyle = {
   width: '100%',
   maxWidth: '100%',
 };
-
-const alignRight = { display: 'flex', justifyContent: 'flex-end' }
-const alignLeft = { display: 'flex', justifyContent: 'flex-start' }

@@ -1,4 +1,7 @@
 import mongoose from 'mongoose'
+import {ofetch} from 'ofetch'
+
+const API_URL = "https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_testing_PCRcountByDay?format=json"
 
 const dbConnect = async () => {
   if (!process.env.MONGODB_URI) {
@@ -24,6 +27,11 @@ export const getSexData = async () => {
     { type: 'female', value: 65 }
   ]
 }
+
+export const parseRemoteAPI = async ()=>{
+  const result = await ofetch(API_URL, { parseResponse: JSON.parse }).catch((error) => error.data);;
+  return result.results;  
+};
 
 const data = [
   {
