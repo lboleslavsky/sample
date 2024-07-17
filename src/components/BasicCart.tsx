@@ -9,14 +9,14 @@ type Props = {
 const BasicCart: FC<Props> = (props) => {
 
   return (<>
-    <Card style={{ minWidth: "400px" }}>
+    <Card>
       <Row>
         <Col style={alignLeft} flex={"auto"}>
           <h3>{props.title}</h3>
         </Col>
       </Row>
       <Row>
-        <Col flex={"auto"}>
+        <Col>
           {props.graph}
         </Col>
       </Row>

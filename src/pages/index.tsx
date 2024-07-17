@@ -11,11 +11,19 @@ const IndexPage: NextPageWithLayout = () => {
 
   return (
     <>
-      <Row>
-        <Col style={{ width: "50%", padding: "2em" }}>
+      <Row justify="center" gutter={16}>
+        <Col xs={{ flex: '100%' }}
+          sm={{ flex: '50%' }}
+          md={{ flex: '40%' }}
+          lg={{ flex: '20%' }}
+          xl={{ flex: '10%' }}>
           <BasicCart title={"Vaccinated"} graph={<BasicLineChart data={dataVaccinated.data} />} />
         </Col>
-        <Col style={{ width: "50%", padding: "2em" }}>
+        <Col xs={{ flex: '100%' }}
+          sm={{ flex: '50%' }}
+          md={{ flex: '40%' }}
+          lg={{ flex: '20%' }}
+          xl={{ flex: '10%' }}>
           <BasicCart title={"Male/Female"} graph={<BasicRadialChart data={dataSex.data} />} />
         </Col>
       </Row>

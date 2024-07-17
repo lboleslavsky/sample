@@ -12,7 +12,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
         <Header style={{ background: "white" }}>
           Some web
         </Header>
-        <Content style={{ padding: "3em" }}>
+        <Content style={{ background:"#F7F7F7", padding: "3em" }}>
           <Row>
             <Col style={alignLeft} flex={"auto"}>
               <div style={headerStyle}>Graph list</div>
@@ -33,7 +33,7 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
           </Row>
           <Row>
             <Col style={{ width: "100%" }}>
-              <div style={contentStyle}> <main className="h-screen">{children}</main></div>
+              <div style={contentStyle}> <main style={{background:"#F7F7F7"}} className="h-screen">{children}</main></div>
             </Col>
           </Row>
           <Row>
