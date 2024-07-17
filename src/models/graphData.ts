@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from "mongoose";
+import mongoose, { model, models, Schema } from "mongoose";
 
 const schema = new Schema({
     id: {
@@ -11,8 +11,8 @@ const schema = new Schema({
     }
 })
 
-const chartModel = () => {
-    return model("graphData") || model("graphData", schema)
+const graphData = () => {
+    return mongoose.models.graphData|| model("graphData", schema)
 };
 
-export default chartModel
+export default graphData

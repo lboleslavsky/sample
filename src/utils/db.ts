@@ -1,3 +1,4 @@
+import graphData from '@/models/graphData';
 import mongoose from 'mongoose'
 import {ofetch} from 'ofetch'
 
@@ -18,6 +19,7 @@ export default dbConnect;
 // dummy data for service, TODO: mongoose
 export const getVaccinated = async () => {
   return data
+  //return await graphData().find()
 }
 
 // dummy data for service,  TODO: mongoose

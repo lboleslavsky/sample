@@ -14,7 +14,7 @@ import { IoFilterOutline } from "react-icons/io5";
 const IndexPage: NextPageWithLayout = () => {
   const dataVaccinated = trpc.getDataVaccinated.useQuery()
   const dataSex = trpc.getDataSex.useQuery()
-
+  
   return (
     <>
       <Row style={{ padding: "auto" }}>
