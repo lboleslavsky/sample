@@ -9,15 +9,13 @@ import { MdNotes } from "react-icons/md";
 import { IoFilterOutline } from "react-icons/io5";
 
 
-
-
 const IndexPage: NextPageWithLayout = () => {
   const dataVaccinated = trpc.getDataVaccinated.useQuery()
   const dataSex = trpc.getDataSex.useQuery()
   
   return (
     <>
-      <Row style={{ padding: "auto" }}>
+      <Row style={{ padding: "2em", minWidth:"400px" }}>
         <Col style={alignLeft}>
           <div style={headerStyle}>Graph list</div>
         </Col>
@@ -59,7 +57,7 @@ export default IndexPage;
 
 const headerStyle: React.CSSProperties = {
   textAlign: 'left',
-  marginLeft: '2em',
+  marginLeft: '3em',
   color: 'black',
   height: 64
 };

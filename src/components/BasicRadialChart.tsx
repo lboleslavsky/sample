@@ -8,12 +8,15 @@ type Props = {
   data: any
 }
 
+const CHART_WIDTH = 350;
+const CHART_HEIGHT = 350;
+
 const BasicLineChart: FC<Props> = (props) => {
 
   const config = {
     data: props.data,
-    height: 350,
-    width: 350,
+    height: CHART_HEIGHT,
+    width: CHART_WIDTH,
     angleField: 'value',
     colorField: 'type',
     label: {

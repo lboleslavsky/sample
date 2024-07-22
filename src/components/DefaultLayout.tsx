@@ -12,19 +12,18 @@ export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
         <Header style={{ background: "white" }}>
           Some web
         </Header>
-        <Content style={{ background:"#F7F7F7", padding: "3em" }}>
-          
+        <Content className={"content"} style={{ background:"#F7F7F7"}}>
           <Row>
             <Col style={{ width: "100%" }}>
               <div style={contentStyle}> {children}</div>
             </Col>
-          </Row>
-          <Row>
+          </Row>         
+        </Content>
+        <Row justify="center">
             <Col>
-              <div style={footerStyle}>...</div>
+              <div>&copy;&nbsp;2024</div>
             </Col>
           </Row>
-        </Content>
       </Layout>
     </>
   );
@@ -49,4 +48,5 @@ const layoutStyle = {
   overflow: 'hidden',
   width: '100%',
   maxWidth: '100%',
+  minHeight: "100vh"
 };
