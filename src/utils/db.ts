@@ -1,78 +1,72 @@
-import graphData from '@/models/graphData';
-import mongoose from 'mongoose'
-import {ofetch} from 'ofetch'
+import { ofetch } from 'ofetch'
+import { PrismaClient } from '@prisma/client'
 
-const API_URL = "https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_testing_PCRcountByDay?format=json"
+const API_URL = "https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_testing_PCRcountByDay?format=json";
+const MALE = "male";
+const FEMALE = "female";
 
-const dbConnect = async () => {
-  if (!process.env.MONGODB_URI) {
-    throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
-  }
-  const uri = process.env.MONGODB_URI;
-  //await mongoose.connect(uri);
-};
+// prisma client singleton
+const prismaClientSingleton = () => {
+  return new PrismaClient();
+}
 
-dbConnect().catch((err) => console.log(err));
+declare const globalThis: {
+  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
+} & typeof global;
 
-export default dbConnect;
+const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
-// dummy data for service, TODO: mongoose
+export default prisma;
+
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma
+
+// data for service about vaccinated
 export const getVaccinated = async () => {
-  return data
-  //return await graphData().find()
+  const d = await prisma.chart_data.findMany({
+    orderBy:{
+      date: "desc"
+    },  
+    take:25  
+  })
+  return d
 }
 
-// dummy data for service,  TODO: mongoose
+// data for service about gender
 export const getSexData = async () => {
+
+  let cnt:number = 0;
+
+  let max:number = 0; 
+  
+  const d:any = await prisma.$queryRaw`SELECT COUNT(sex) as cnt FROM chart_data WHERE sex is false`
+   
+  if(d.length>0){
+    cnt = Number(d[0].cnt);
+    max = await prisma.chart_data.count();
+  }
+  console.log(cnt)
   return [
-    { type: 'male', value: 35 },
-    { type: 'female', value: 65 }
+    { type: MALE, value: cnt },
+    { type: FEMALE, value: (max-cnt) }
   ]
+  
 }
 
-export const parseRemoteAPI = async ()=>{
+export const parseRemoteAPI = async (tresholdDate:Date) => {
   const result = await ofetch(API_URL, { parseResponse: JSON.parse }).catch((error) => error.data);;
-  return result.results;  
+  var items = [];
+  for (let item of result.results){
+   
+    if(tresholdDate<new Date(item.date)){
+      
+      // this is necessary for graph demo, because all parsed records of sex field are "all"
+      const sex = (Math.floor(Math.random()*2))==0?false:true;
+            
+      items.push({value:item.metric_value, date:new Date(item.date), sex:sex})
+    } else {
+      console.log("skipping row..." + item.date );
+    }
+  }
+  
+  return items;
 };
-
-const data = [
-  {
-    "date": "2007-04-23",
-    "value": 93.24
-  },
-  {
-    "date": "2007-04-24",
-    "value": 95.35
-  },
-  {
-    "date": "2007-04-25",
-    "value": 98.84
-  },
-  {
-    "date": "2007-04-26",
-    "value": 99.92
-  },
-  {
-    "date": "2007-04-29",
-    "value": 99.8
-  },
-  {
-    "date": "2007-05-01",
-    "value": 99.47
-  },
-  {
-    "date": "2007-05-02",
-    "value": 100.39
-  },
-  {
-    "date": "2007-05-03",
-    "value": 100.4
-  },
-  {
-    "date": "2007-05-04",
-    "value": 100.81
-  },
-  {
-    "date": "2007-05-07",
-    "value": 103.92
-  }]
