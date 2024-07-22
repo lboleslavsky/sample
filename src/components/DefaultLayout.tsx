@@ -37,13 +37,7 @@ const contentStyle: React.CSSProperties = {
   backgroundColor: '#F7F7F7',
 };
 
-const footerStyle: React.CSSProperties = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#F7F7F7',
-};
-
-const layoutStyle = {
+const layoutStyle: React.CSSProperties = {
   borderRadius: 8,
   overflow: 'hidden',
   width: '100%',
